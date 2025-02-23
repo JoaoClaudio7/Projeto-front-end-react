@@ -1,10 +1,17 @@
-import logo from "../../assets/logo.svg"
+import logo from "../../../assets/logo.svg"
 import Image from "next/image"
 import { Ranking } from "./ranking"
 import { Stats } from "./stats"
 import { InvateLinkInput } from "./invateLinkInput"
-export default function InvatePage(){
-    const invateLink = "http://localhost:3000/invate/8373726426"
+interface InvatePageProps{
+    params: Promise< {
+        subscriberId: string
+    }>
+}
+
+export default async function InvatePage(props: InvatePageProps){
+    const { subscriberId} = await props.params
+    const invateLink = `http://localhost:3000/invate/${subscriberId}`
     return (
         <div className="min-h-dvh flex items-center justify-between gap-16 flex-col md:flex-row">
             <div className="flex flex-col gap-10 w-full max-w-[550px]">
